@@ -28,12 +28,12 @@ public class TracingPhaseListener implements PhaseListener {
         Span activeSpan = tracer.activeSpan();
         if (activeSpan == null) {
             activeSpan = tracer.buildSpan("Faces Lifecycle").start();
-            Scope root = tracer.scopeManager().activate(activeSpan);
+            Scope root = tracer.scopeManager().activate(activeSpan, false);
             rootScope.set(root);
             rootSpan.set(activeSpan);
         }
         Span span = tracer.buildSpan(event.getPhaseId().getName()).start();
-        Scope scope = tracer.scopeManager().activate(span);
+        Scope scope = tracer.scopeManager().activate(span, false);
         currentScope.set(scope);
         currentSpan.set(span);
     }

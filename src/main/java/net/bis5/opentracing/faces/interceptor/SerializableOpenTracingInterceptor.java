@@ -74,7 +74,7 @@ public class SerializableOpenTracingInterceptor implements Serializable {
         }
 
         Span span = spanBuilder.start();
-        try (Scope scope = tracer.scopeManager().activate(span)) {
+        try (Scope scope = tracer.scopeManager().activate(span, false)) {
             log.fine("Adding span context into the invocation context.");
             ctx.getContextData().put(SPAN_CONTEXT, span.context());
 
