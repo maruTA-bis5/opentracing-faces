@@ -2,6 +2,8 @@ package net.bis5.opentracing.faces.interceptor;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.annotation.Priority;
@@ -17,6 +19,7 @@ import io.opentracing.Span;
 import io.opentracing.SpanContext;
 import io.opentracing.Tracer;
 import io.opentracing.contrib.tracerresolver.TracerResolver;
+import io.opentracing.tag.Tags;
 
 /**
  * @see io.opentracing.contrib.interceptors.OpenTracingInterceptor
@@ -92,6 +95,9 @@ public class SerializableOpenTracingInterceptor implements Serializable {
             }
 
             return ctx.proceed();
+        } catch (Exception e) {
+            logException(span, e);
+            throw e;
         } finally {
             span.finish();
         }
@@ -129,4 +135,13 @@ public class SerializableOpenTracingInterceptor implements Serializable {
         }
         return String.format("%s.%s", method.getDeclaringClass().getName(), method.getName());
     }
+
+    private void logException(Span span, Exception e) {
+        Map<String, Object> log = new HashMap<>();
+        log.put("event", Tags.ERROR.getKey());
+        log.put("error.object", e);
+        span.log(log);
+        Tags.ERROR.set(span, true);
+    }
+
 }
