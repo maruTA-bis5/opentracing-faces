@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+      - opentracing-0.31
   pull_request:
     types:
       - opened
