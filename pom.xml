@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.bis5.opentracing</groupId>
     <artifactId>opentracing-faces</artifactId>
-    <version>1.3.0-oldapi.0</version>
+    <version>1.3.1-oldapi.0-SNAPSHOT</version>
 
     <name>MicroProfile OpenTracing for Jakarta Server Faces</name>
     <description>Integrate Jakarta Server Faces with MicroProfile OpenTracing</description>
@@ -18,7 +18,7 @@
         <url>https://github.com/maruTA-bis5/opentracing-faces.git</url>
         <connection>scm:git:git://github.com/maruTA-bis5/opentracing-faces.git</connection>
         <developerConnection>scm:git:git@github.com:maruTA-bis5/opentracing-faces.git</developerConnection>
-        <tag>v1.3.0-oldapi.0</tag>
+        <tag>HEAD</tag>
     </scm>
     <developers>
         <developer>
